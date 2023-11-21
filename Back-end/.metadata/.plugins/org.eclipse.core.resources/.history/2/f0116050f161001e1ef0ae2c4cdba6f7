@@ -1,0 +1,7 @@
+package com.mycompany.cafe.main.restImpl;
+
+import com.mycompany.cafe.main.rest.BillRest;
+
+public class BillRestImpl implements BillRest{
+
+}

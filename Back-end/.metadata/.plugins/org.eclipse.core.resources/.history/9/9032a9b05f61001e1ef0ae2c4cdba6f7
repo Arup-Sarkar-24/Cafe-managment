@@ -1,0 +1,10 @@
+package com.mycompany.cafe.main.serviceImpl;
+
+import org.springframework.stereotype.Service;
+
+import com.mycompany.cafe.main.service.ProductService;
+
+@Service
+public class ProductServiceImpl implements ProductService {
+
+}

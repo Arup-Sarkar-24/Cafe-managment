@@ -1,0 +1,36 @@
+package com.mycompany.cafe.main.serviceImpl;
+
+import java.util.Map;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.mycompany.cafe.main.constents.CafeConstants;
+import com.mycompany.cafe.main.service.BillService;
+import com.mycompany.cafe.main.utils.CafeUtils;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Service
+public class BillServiceImpl implements BillService {
+
+	@Override
+	public ResponseEntity<String> generatedReport(Map<String, Object> requestMap) {
+		log.info("Inside generateReport");
+		try {
+			String fileName;
+			if(validateRequestMap(requestMap)) {
+				
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	private boolean validateRequestMap(Map<String, Object> requestMap) {
+		return requestMap.containsKey("name") && requestMap.containsKey("contactNumber") && requestMap.containsKey("email") && requestMap.containsKey("paymentMethod") && requestMap.containsKey("productDetails") && requestMap.containsKey("totalAmount");
+	}
+
+}

@@ -1,0 +1,10 @@
+package com.mycompany.cafe.main.restImpl;
+
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mycompany.cafe.main.rest.DashboardRest;
+
+@RestController
+public class DashboardRestImpl implements DashboardRest{
+
+}

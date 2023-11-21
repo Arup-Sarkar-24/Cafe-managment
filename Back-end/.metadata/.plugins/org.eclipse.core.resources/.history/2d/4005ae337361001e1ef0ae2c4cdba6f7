@@ -1,0 +1,9 @@
+package com.mycompany.cafe.main.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.mycompany.cafe.main.POJO.Product;
+
+public interface ProductDao extends JpaRepository<Product, Integer> {
+
+}

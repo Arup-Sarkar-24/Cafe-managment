@@ -1,0 +1,5 @@
+package com.mycompany.cafe.main.POJO;
+
+public class Bill {
+
+}

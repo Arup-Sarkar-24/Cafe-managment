@@ -1,0 +1,7 @@
+package com.mycompany.cafe.main.restImpl;
+
+import com.mycompany.cafe.main.rest.DashboardRest;
+
+public class DashboardRestImpl implements DashboardRest{
+
+}

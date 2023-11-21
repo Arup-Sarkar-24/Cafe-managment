@@ -1,0 +1,23 @@
+package com.mycompany.cafe.main.wrapper;
+
+import lombok.*;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class ProductWrapper {
+	Integer id;
+	
+	String name;
+	
+	String description;
+	
+	Integer price;
+	
+	String status;
+	
+	Integer categoryId;
+	
+	String categoryName;
+}

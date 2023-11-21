@@ -1,0 +1,5 @@
+package com.mycompany.cafe.main.serviceImpl;
+
+public class DashboardServiceImpl {
+
+}

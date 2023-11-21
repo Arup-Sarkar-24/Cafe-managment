@@ -1,0 +1,5 @@
+package com.mycompany.cafe.main.service;
+
+public interface ProductService {
+
+}

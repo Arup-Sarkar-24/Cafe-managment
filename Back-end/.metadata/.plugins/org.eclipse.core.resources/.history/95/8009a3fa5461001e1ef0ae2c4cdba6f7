@@ -1,0 +1,58 @@
+package com.mycompany.cafe.main.JWT;
+
+import com.mycompany.cafe.main.JWT.JwtFilter;
+import com.mycompany.cafe.main.JWT.CustomerUsersDetailsService;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private final JwtFilter jwtFilter;
+    private final CustomerUsersDetailsService customerUsersDetailsService;
+
+    public SecurityConfig(JwtFilter jwtFilter, CustomerUsersDetailsService customerUsersDetailsService) {
+        this.jwtFilter = jwtFilter;
+        this.customerUsersDetailsService = customerUsersDetailsService;
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.cors().and().csrf().disable()
+            .authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/user/login", "/user/signup", "/user/forgotPassword").permitAll()
+                .antMatchers(HttpMethod.GET, "/user/checkToken").permitAll()
+                .anyRequest().authenticated()
+            .and()
+            .exceptionHandling()
+            .and()
+            .sessionManagement()
+                .disable(); // Disable session management for stateless JWT authentication
+
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        // Allow access to certain static resources or public endpoints
+        web.ignoring().antMatchers(
+            "/resources/**",
+            "/static/**",
+            "/public/**"
+        );
+    }
+
+    @Bean
+    public CustomerUsersDetailsService customerUsersDetailsService() {
+        return new CustomerUsersDetailsService();
+    }
+}
